@@ -6,7 +6,6 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const MONGODB_URI = process.env.MONGODB_URI_PROD;
 
-// const mongoURI = `mongodb://localhost:27017/todo-demo`;
 const mongoURI = MONGODB_URI;
 
 const app = express();
