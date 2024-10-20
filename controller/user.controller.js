@@ -1,7 +1,6 @@
 const User = require("../model/User");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const jwt = require('jsonwebtoken');
 const userController = {};
 
 // 회원가입
