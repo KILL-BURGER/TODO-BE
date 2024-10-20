@@ -14,12 +14,13 @@ app.use(cors());
 app.use('/api', indexRouter);
 
 mongoose.connect(mongoURI, {useNewUrlParser: true})
-    .then(() => {
-        console.log('mongoose connected')})
-    .catch((err) => {
-        console.log("DB connection fail", err);
-});
+  .then(() => {
+    console.log('mongoose connected')
+  })
+  .catch((err) => {
+    console.log("DB connection fail", err);
+  });
 
 app.listen(5050, () => {
-    console.log('5050 server start..!');
+  console.log('5050 server start..!');
 });
