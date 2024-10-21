@@ -7,22 +7,32 @@ const userController = {};
 userController.createUser = async (req, res) => {
   try {
     const {email, name, password} = req.body;
-    const user = await User.findOne({email});
-    if (user) {
-      throw new Error('이미 가입된 유저입니다.');
+    if (email === '') {
+      throw new Error('이메일을 입력해주세요.');
+    }
+    if (name === '') {
+      throw new Error('이름을 입력해주세요.');
     }
     if (password === '') {
       throw new Error('비밀번호를 입력해주세요.');
+    }
+
+    const user = await User.findOne({email});
+    if (user) {
+      throw new Error('이미 가입된 유저입니다.');
     }
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(password, salt);
     const newUser = new User({email: email, name: name, password: hash});
     await newUser.save();
     res.status(200).json({status: 'success'});
+
   } catch (err) {
     if (err.errors) {
+      // 필드 에러
       res.status(400).json({status: 'fail', message: err.errors});
     } else {
+      // 예외처리에 걸린경우
       res.status(400).json({status: 'fail', message: err.message});
     }
   }
