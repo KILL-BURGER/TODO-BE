@@ -7,15 +7,15 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const userSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, '이름을 입력해주세요.'],
   },
   email: {
     type: String,
-    required: true,
+    required: [true, '이메일을 입력해주세요.']
   },
   password: {
     type: String,
-    required: true,
+    required: [true, '비밀번호를 입력해주세요.']
   }
 }, {timestamps: true});
 
