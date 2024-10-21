@@ -25,6 +25,7 @@ userSchema.methods.toJSON = function () {
   return obj;
 };
 userSchema.methods.generateToken = function () {
+  console.log('generateToken 호출');
   return jwt.sign({_id: this._id}, JWT_SECRET_KEY, {expiresIn: '1d'});
 };
 

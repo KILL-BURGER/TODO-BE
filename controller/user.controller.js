@@ -30,6 +30,7 @@ userController.loginWithEmail = async (req, res) => {
     const user = await User.findOne({email}, '-createdAt -updatedAt -__v');
     if (user) {
       const isMatch = bcrypt.compareSync(password, user.password);
+      console.log('로그인 성공여부', isMatch);
       if (isMatch) {
         const token = user.generateToken();
         return res.status(200).json({status: 'success', user, token});
