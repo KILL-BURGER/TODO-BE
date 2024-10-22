@@ -17,7 +17,9 @@ authController.authenticate = (req, res, next) => {
       req.userId = payload._id;
     });
 
+    // 다음 함수 호출
     next();
+
   } catch (err) {
     res.status(400).json({status: 'fail', message: err.message});
   }
